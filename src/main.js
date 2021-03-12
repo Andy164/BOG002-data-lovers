@@ -1,5 +1,17 @@
-import { example } from './data.js';
-// import data from './data/lol/lol.js';
+import { filterName } from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
 
-console.log(example, data.results);
+// const arr = filterByLetterName(data.results, 'A');
+
+const arr = filterName(data.results);
+
+let list = Array.from(arr);
+
+
+document.getElementById('names').innerHTML = list;
+
+    console.log(list);
+
+
+
+
