@@ -1,0 +1,44 @@
+body{
+    background-image: url(./img/fondo.jpg);
+    height: 100%;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 0;
+    margin: 0%;
+}
+#titulo img{
+    width: 600px;
+}
+#titulo{
+    background: linear-gradient(90deg, rgba(0,0,0,1) 9%, rgba(0,0,0,0.165703781512605) 47%);
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vmin;
+}
+#titulo p{
+    color: white;
+    align-content: left;
+    margin-left: 30px;
+    font-size:large;
+}
+#titulo button{
+    background: #17aebf;
+    border: 2px solid #D4D94E;
+    border-radius: 10px;
+    color:#D4D94E ;
+    padding: 10px 15px;
+    margin: 15px;
+    font-weight: bold;
+    font-size: large;
+    width: 150px;
+}
+#botones{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+    
