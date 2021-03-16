@@ -1,31 +1,34 @@
 body{
     background-image: url(./img/fondo.jpg);
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover;
     background-attachment: fixed;
     padding: 0;
-    margin: 0%;
+    margin: 0;
+    overflow: hidden;
+    box-sizing: content-box;
 }
 #titulo img{
-    width: 600px;
+    width: 90%;
+    max-width: 600px;
 }
-#titulo{
+#titulo {
     background: linear-gradient(90deg, rgba(0,0,0,1) 9%, rgba(0,0,0,0.165703781512605) 47%);
     background-repeat: no-repeat; 
     background-size: cover;
-    background-attachment: absolute;
-    height:100vh;
-    width: 100%;
-
+    background-attachment: fixed;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 #titulo p{
     color: white;
-    margin-left: 30px;
-    font-size:large;
-    display: block;
-   
+    margin-left: 50px;
+    font-size: 20px;
 }
 #titulo button{
     background: #17aebf;
@@ -38,10 +41,17 @@ body{
     font-size: large;
     width: 150px;
 }
+#titulo div#description {
+    margin-left: 20px;
+}
 #botones{
-    position: fixed;
+    /* position: fixed;
     bottom: 50px;
-    right: 50px;
+    right: 50px; */
+    align-self: flex-end;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-right: 20px;
 }
 
     
