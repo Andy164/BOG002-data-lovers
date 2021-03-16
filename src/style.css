@@ -1,4 +1,4 @@
-body{
+body {
     background-image: url(./img/fondo.jpg);
     height: 100vh;
     width: 100vw;
@@ -10,8 +10,9 @@ body{
     margin: 0;
     overflow: hidden;
     box-sizing: content-box;
+    color: white;
 }
-#titulo img{
+#titulo img {
     width: 90%;
     max-width: 600px;
 }
@@ -25,12 +26,13 @@ body{
     flex-direction: column;
     justify-content: space-between;
 }
-#titulo p{
+#titulo p {
     color: white;
-    margin-left: 50px;
-    font-size: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 18px;
 }
-#titulo button{
+#titulo button {
     background: #17aebf;
     border: 2px solid #D4D94E;
     border-radius: 10px;
@@ -44,14 +46,28 @@ body{
 #titulo div#description {
     margin-left: 20px;
 }
-#botones{
-    /* position: fixed;
-    bottom: 50px;
-    right: 50px; */
+#botones {
     align-self: flex-end;
     text-align: center;
     margin-bottom: 20px;
     margin-right: 20px;
 }
+.d-none {
+    display: none;
+}
+div#viewCharacters {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+}
+@media screen and (max-width: 570px) {
+    #titulo p {
+        text-align: center;
+    }
+}
 
-    
+@media screen and (min-width: 700px) {
+    #titulo p {
+        width: 50%;
+    }
+}
