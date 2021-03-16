@@ -15,16 +15,17 @@ body{
     background: linear-gradient(90deg, rgba(0,0,0,1) 9%, rgba(0,0,0,0.165703781512605) 47%);
     background-repeat: no-repeat; 
     background-size: cover;
-    background-attachment: fixed;
-    height:fit-content;
+    background-attachment: absolute;
+    height:100vh;
     width: 100%;
 
 }
 #titulo p{
     color: white;
-    align-content: left;
     margin-left: 30px;
     font-size:large;
+    display: block;
+   
 }
 #titulo button{
     background: #17aebf;
