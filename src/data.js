@@ -7,8 +7,10 @@ export const filterByLetterName = (data, letter) => {
 
 export const filterName = (data) => {
   const result = data.map(character => character.name);
+  
   return result;
 }
+
 
 export const anotherExample = () => {
   return 'OMG';

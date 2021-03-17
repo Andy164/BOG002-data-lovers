@@ -1,8 +1,8 @@
-import { filterByLetterName } from './data.js';
+import { filterByLetterName,} from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
 
 //const arr = filterByLetterName(data.results, 'A');
-// const arr = filterName(data.results);
+ //const arr = filterName(data.results);
 // let list = Array.from(arr);
 // document.getElementById('names').innerHTML = list;
 
@@ -16,6 +16,9 @@ function toCharacters() {
 
     const viewHome = document.getElementById("titulo");
     viewHome.style.display = "none";
+
+    const menu= document.getElementById("openNav");
+    menu.style.display="block";
 }
 document.getElementById("characters").onclick = function() {
     toCharacters();
@@ -32,7 +35,6 @@ for(let letter of letters) {
     btn.textContent = letter;
     // A ese botón creado se le añade el evento click
     btn.onclick = function() {
-        console.log(filterByLetterName(characters, letter));
      let arrcharacters=filterByLetterName(characters, letter);
       removeCharacters(characters);listCharacters(arrcharacters);
 
@@ -89,31 +91,27 @@ function removeCharacters(data){
 }
 
 const modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-const btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
 }
-
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
-// console.log(list);
-
-
+//En esta funcion sale el menu hamburguesa 
+function openNav() {
+    document.getElementById("lateralMenu").style.width = "250px";
+}
+    document.getElementById("openNav").onclick = function() {
+        openNav();
+    }
+    function closeNav() {
+    document.getElementById("lateralMenu").style.width = "0";
+  }
+  document.getElementById("closeNav").onclick = function() {
+   closeNav();
+}
 
 
