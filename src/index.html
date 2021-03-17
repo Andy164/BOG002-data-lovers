@@ -26,18 +26,38 @@
   <div id="viewCharacters" class="d-none">
     <div id="filterByLetter"></div>
 
-    <div id="contCards">
-      <!-- <div class="card-character">
-        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="">
-        <p>Rick Sánchez</p>
-      </div> -->
-      <!-- <div class="card-character">
-        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="">
-        <p>Rick Sánchez</p>
-      </div> -->
-    </div>
+    <div id="contCards"></div>
+    <button id="myBtn">Open Modal</button>
+</div>
 
+<div id="myModal" class="modal">
+
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="containerinfo">
+      <img id="modalImg" src="https://raw.githubusercontent.com/Laboratoria/rick-and-morty-images/master/images/1.jpeg" alt="">
+      <div id="detailCharacters"> 
+        <span class="information">Status:</span>
+        <span id ="status" class="value"></span><br>
+        <span class="information">Specie:</span>
+        <span id="specie" class="value"></span><br>
+        <span class="information">Type:</span>
+        <span id="type" class="value"></span><br>
+        <span class="information">Gender:</span>
+        <span id="gender" class="value"></span><br>
+        <span class="information">Origin:</span>
+        <span id="origin" class="value"></span><br>
+        <span class="information">Location:</span>
+        <span id="location" class="value"></span><br>
+      </div>
+    </div>
+      <p id="name">nombre</p>
   </div>
+
+</div>
+
+  
+
 
   <script src="main.js" type="module"></script>
 </body>
