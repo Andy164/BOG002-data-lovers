@@ -10,6 +10,16 @@ export const filterName = (data) => {
   
   return result;
 }
+export const getDimensions = (data) =>{
+  const dimensions = data.map(location =>location.dimension);
+
+ return dimensions;
+}
+export const getName = (data =>{
+  const nameDimensions = data.map(location=> location.name);
+
+  return nameDimensions
+})
 
 
 export const anotherExample = () => {

@@ -1,4 +1,4 @@
-import { filterByLetterName } from './data.js';
+import { filterByLetterName, getDimensions, getName } from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
 
 
@@ -85,7 +85,7 @@ for (let letter of letters) {
     let charactersFiltered = filterByLetterName(charactersData, letter);
 
     // Llamamos a la función que remueve todas las tarjetas que están en la página
-    removeCharacters(charactersData); 
+    removeCharacters(charactersData);
 
     // Llamamos a la función que va a crear y mostrar los personajes que fueron filtrados
     listCharacters(charactersFiltered);
@@ -208,28 +208,79 @@ document.getElementById("closeNav").onclick = function () {
   closeNav();
 }
 
-
-// DESPLEGABLE DE LOS MUNDOS -------------------------------------------------------------------------------------
-const desplegable = document.getElementsByClassName("desplegable");
-// Iteramos sobre todos los elementos que tienen la clase "desplegable"
-for (let i = 0; i < desplegable.length; i++) {
-  // A cada elemento desplegable le agregamos el evento click para mostrar el panel de opciones
-  desplegable[i].addEventListener("click", () => {
-    let panel = desplegable[i].nextElementSibling;
-
-    if(panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
+// Utilizamos fetch que permite traer los objetos de location
+fetch("https://rickandmortyapi.com/api/location")
+  .then(response => response.json())
+  .then(data => {
+    const listDimensions = getDimensions(data.results);
+    const dimensionsSet = new Set(listDimensions);
+    const dimensions = [...dimensionsSet];
+    console.log(dimensions);
+    cardDimensions(dimensions);
+    const listName = getName(data.results);
+    const names = [...listName];
+    console.log(names);
+    cardDesplegable(data.results, dimensions);
   });
-}
 
+function cardDimensions(listDimensions) {
+  const containerWorlds = document.getElementById("viewWorlds");
+
+  for (let dimension of listDimensions) {
+    const btnDesplegable = document.createElement("button");
+    btnDesplegable.className = "desplegable";
+    btnDesplegable.textContent = dimension;
+    const div = document.createElement("div");
+    div.className = "listWorlds subdesplegable";
+
+    containerWorlds.appendChild(btnDesplegable);
+    containerWorlds.appendChild(div);
+     
+  }
+}
+function cardDesplegable(listWorlds, dimensions) {
+  const containerName = document.getElementsByClassName("listWorlds");
+  const desplegable = document.getElementsByClassName("desplegable");
+  for (let index = 0; index < containerName.length; index++) {
+
+    for (let place of listWorlds) {
+      if (place.dimension == dimensions[index]) {
+        const btnSubDesplegable = document.createElement("button");
+        btnSubDesplegable.className = "desplegable";
+        btnSubDesplegable.textContent = place.name;
+        desplegable[index].onclick = function () {
+          let panel = desplegable[index].nextElementSibling;
+
+          if (panel.style.display === "block") {
+            panel.style.display = "none";
+          } else {
+            panel.style.display = "block";
+          }
+
+          containerName[index].appendChild(btnSubDesplegable);
+        }
+      }
+
+
+
+    }
+
+  }
+}
+  // const desplegable = document.getElementsByClassName("desplegable");
+// Iteramos sobre todos los elementos que tienen la clase "desplegable"
+// for (let i = 0; i < desplegable.length; i++) {
+//   // A cada elemento desplegable le agregamos el evento click para mostrar el panel de opciones
+//   desplegable[i].addEventListener("click", () => {
+//     let panel = desplegable[i].nextElementSibling;
+
+//     if(panel.style.display === "block") {
+//       panel.style.display = "none";
+//     } else {
+//       panel.style.display = "block";
 
 //const arr = filterByLetterName(data.results, 'A');
 //const arr = filterName(data.results);
 // let list = Array.from(arr);
 
-// function viewWorlds() {
-
-// }
+// function viewWorlds() 
