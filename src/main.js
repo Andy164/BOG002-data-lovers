@@ -3,7 +3,8 @@ import data from './data/rickandmorty/rickandmorty.js';
 
 
 // Guardar en la constante characters el arreglo de objetos que contienen la información de cada personaje
-const characters = data.results;
+const charactersData = data.results;
+
 
 // BOTONES MENÚ --------------------------------------------------------------------------------------------
 // Ocultar vista principal y mostrar la de personajes
@@ -23,6 +24,10 @@ for (let index = 0; index < btnsToCharacters.length; index++) {
     // Mostramos el botón que abre del menú hamburguesa
     const menu = document.getElementById("openNav");
     menu.style.display = "block";
+
+    // Ocultamos vista de los mundos
+    const viewWorlds = document.getElementById("viewWorlds");
+    viewWorlds.style.display = "none";
   });
 }
 
@@ -45,6 +50,22 @@ for (let index = 0; index < btnsToDimensions.length; index++) {
   });
 }
 
+// Ocultar la vista actual y mostrar la de Home
+function showHome() {
+  const viewHome = document.getElementById("titulo");
+  viewHome.style.display = "flex";
+
+  const viewCharacters = document.getElementById("viewCharacters");
+  viewCharacters.style.display = "none";
+
+  const viewWorlds = document.getElementById("viewWorlds");
+  viewWorlds.style.display = "none";
+}
+const btnHome = document.getElementById("menuHome");
+btnHome.onclick = () => {
+  showHome();
+  closeNav();
+}
 
 
 // FILTRO POR LETRAS PARA EL NOMBRE -------------------------------------------------------------------------------
@@ -59,9 +80,15 @@ for (let letter of letters) {
   btn.textContent = letter;
   // A ese botón creado se le añade el evento click
   btn.onclick = function () {
-    let arrcharacters = filterByLetterName(characters, letter);
-    removeCharacters(characters); 
-    listCharacters(arrcharacters);
+    // LLamar a la función que filtra personajes por la letra inicial y se guarda 
+    // el resultado (arreglo de personajes) en la variable charactersFiltered
+    let charactersFiltered = filterByLetterName(charactersData, letter);
+
+    // Llamamos a la función que remueve todas las tarjetas que están en la página
+    removeCharacters(charactersData); 
+
+    // Llamamos a la función que va a crear y mostrar los personajes que fueron filtrados
+    listCharacters(charactersFiltered);
   }
   // Agregar el botón creado al contenedor del HTML (contFilterByLetter)
   contFilterByLetter.appendChild(btn);
@@ -71,26 +98,41 @@ for (let letter of letters) {
 let btnAll = document.createElement("button");
 btnAll.textContent = "Ver todos";
 btnAll.onclick = function () {
-  removeCharacters(characters);
-  listCharacters(characters);
+  // Llamamos a la función remover para quitar las tarjetas que estan en la página
+  removeCharacters(charactersData);
+
+  // Llamamos a la función que crea las tarjetas y le pasamos como argumento todos los personajes
+  listCharacters(charactersData);
 }
+// Agregamos el botón de Ver todos al HTML
 contFilterByLetter.appendChild(btnAll);
 
 
 // TARJETAS DE PERSONAJES ------------------------------------------------------------------------------------
 const contCards = document.getElementById("contCards");
 
+//Crear función que recibe un arreglo de personajes para crear cada tarjeta de esa lista
 function listCharacters(listCharacters) {
+  // Iteramos sobre la lista de personajes
   for (let character of listCharacters) {
+    // Por cada personaje creamod la card
     let card = document.createElement("div");
     card.className = "card-character";
     card.id = character.id;
+
+    // Creamos una etiqueta de imagen por cada tarjeta para mostrar la foto de cada personajes
     let image = document.createElement("img");
+    // Le pasamos la url de la imagen a la etiqueta img en src
     image.src = character.image;
+
     // Se le pone a la imagen el evento onclick
     image.onclick = function () {
-      document.getElementById("modalImg").src = character.image;
+      // Aquí obtener los elementos que estructuran el modal que mostrará los detalles de cada personaje
+      // Mostramos el modal (ventana emergente)-------------------------------------------------------------------
       modal.style.display = "block";
+      // Pasamos la url de la imagen
+      document.getElementById("modalImg").src = character.image;
+      // Pasamos el resto de información
       document.getElementById("name").innerHTML = character.name;
       document.getElementById("status").innerHTML = character.status;
       document.getElementById("specie").innerHTML = character.species;
@@ -99,55 +141,81 @@ function listCharacters(listCharacters) {
       document.getElementById("origin").innerHTML = character.origin.name;
       document.getElementById("location").innerHTML = character.location.name;
     }
+
+    // Creamos un etiqueta p para mostrar el nombre del personaje en la tarjeta
     let name = document.createElement("p");
     name.textContent = character.name;
 
+    // Pasamos a la card la imagen y el nombre del personaje
     card.appendChild(image);
     card.appendChild(name);
 
+    // Pasamos la card con el nombre e imagen al HTML
     contCards.appendChild(card);
   }
 }
-listCharacters(characters);
-function removeCharacters(data) {
-  for (let character of data) {
+
+// Llamamos a la función que crea esas tarjetas
+listCharacters(charactersData);
+
+// Creamos la función que quitará las tarjetas de personajes
+function removeCharacters(charactersData) {
+  // Iteramos sobre esa lista de personajes (todos los personajes de data)
+  for (let character of charactersData) {
     const contCards = document.getElementById("contCards");
     let card = document.getElementById(character.id);
+    // Verificamos si en la vista se creó la tarjeta de cada personaje
     if (card) {
+      // Si existe la tarjeta, se elimina de la página
       contCards.removeChild(card);
     }
-
   }
 }
 
+
+// VENTANA EMERGENTE ---------------------------------------------------------------------------------------------
 const modal = document.getElementById("myModal");
 const span = document.getElementsByClassName("close")[0];
+// Agregamos evento click al botón X que cierra la ventana emergente
 span.onclick = function () {
+  // Ocultar la ventana emergente
   modal.style.display = "none";
 }
+// Cuando el usuario haga click fuera de la ventana emergente, ésta se cerrará
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
-//En esta funcion sale el menu hamburguesa 
+
+
+// MENÚ HAMBURGUESA -----------------------------------------------------------------------------------------------
+// Función para mostrar el menú
 function openNav() {
   document.getElementById("lateralMenu").style.width = "250px";
 }
+// Agregar el evento click a las líneas para que abran el menú
 document.getElementById("openNav").onclick = function () {
   openNav();
 }
+
+// Función para cerrar menú
 function closeNav() {
   document.getElementById("lateralMenu").style.width = "0";
 }
+// Agregar el evento click al botón X que cierra el menú
 document.getElementById("closeNav").onclick = function () {
   closeNav();
 }
 
+
+// DESPLEGABLE DE LOS MUNDOS -------------------------------------------------------------------------------------
 const desplegable = document.getElementsByClassName("desplegable");
-for (let index = 0; index < desplegable.length; index++) {
-  desplegable[index].addEventListener("click", () => {
-    let panel = desplegable[index].nextElementSibling;
+// Iteramos sobre todos los elementos que tienen la clase "desplegable"
+for (let i = 0; i < desplegable.length; i++) {
+  // A cada elemento desplegable le agregamos el evento click para mostrar el panel de opciones
+  desplegable[i].addEventListener("click", () => {
+    let panel = desplegable[i].nextElementSibling;
 
     if(panel.style.display === "block") {
       panel.style.display = "none";

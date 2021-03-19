@@ -9,12 +9,14 @@
 </head>
 
 <body>
+  <!-- Vista principal (home) -->
   <div id="titulo">
     <div id="description">
       <img src="./img/Rick.png">
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, ut unde dolore quae dolorum non, minus
         soluta iure autem inventore expedita sed quos veritatis, enim libero sint deleniti. Sequi, adipisci.</p>
     </div>
+    <!-- Botones del menú -->
     <div id="botones">
       <button id="characters" class="charactersMenu">Characters</button>
       <button id="dimensions" class="dimensionsMenu">Dimensions</button>
@@ -22,6 +24,7 @@
     </div>
   </div>
 
+  <!-- Menú lateral (hamburguesa) -->
   <div id="lateralMenu" class="menu">
     <a id="closeNav" href="javascript:void(0)" class="closebtn">&times;</a>
     <button class="charactersMenu">Characters</button>
@@ -30,41 +33,22 @@
     <button id="menuHome" href="#">Home</button>
   </div>
 
+  <!-- Rayas del menú hamburguesa -->
   <span id="openNav">
     <div></div>
     <div></div>
     <div></div>
   </span>
 
+  <!-- Vista de personajes -->
   <div id="viewCharacters" class="d-none views">
+    <!-- Contenedor de los botones por letra -->
     <div id="filterByLetter"></div>
+    <!-- Contenedor de las tarjetas -->
     <div id="contCards"></div>
   </div>
 
-  <div id="viewWorlds" class="d-none views">
-    <button class="desplegable">
-      Dimensión 1
-    </button>
-    <div class="listWorlds subdesplegable">
-      <button class="desplegable">Nombre 1</button>
-      <div class="listCharacters subdesplegable">
-        Mostrar personajes
-      </div>
-      <button class="desplegable">Nombre 2</button>
-      <div class="listCharacters subdesplegable">
-        Mostrar personajes
-      </div>
-      <button class="desplegable">Nombre 3</button>
-      <div class="listCharacters subdesplegable">
-        Mostrar personajes
-      </div>
-      <button class="desplegable">Nombre 4</button>
-      <div class="listCharacters subdesplegable">
-        Mostrar personajes
-      </div>
-    </div>
-  </div>
-
+  <!-- VENTANA EMERGENTE modal -->
   <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -96,6 +80,31 @@
             <a href="#">Link 3</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vista de los mundos -->
+  <div id="viewWorlds" class="d-none views">
+    <button class="desplegable">
+      Dimensión 1
+    </button>
+    <div class="listWorlds subdesplegable">
+      <button class="desplegable">Nombre 1</button>
+      <div class="listCharacters subdesplegable">
+        Mostrar personajes
+      </div>
+      <button class="desplegable">Nombre 2</button>
+      <div class="listCharacters subdesplegable">
+        Mostrar personajes
+      </div>
+      <button class="desplegable">Nombre 3</button>
+      <div class="listCharacters subdesplegable">
+        Mostrar personajes
+      </div>
+      <button class="desplegable">Nombre 4</button>
+      <div class="listCharacters subdesplegable">
+        Mostrar personajes
       </div>
     </div>
   </div>
