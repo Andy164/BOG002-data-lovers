@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
   <div id="titulo">
     <div id="description">
       <img src="./img/Rick.png">
@@ -17,70 +16,89 @@
         soluta iure autem inventore expedita sed quos veritatis, enim libero sint deleniti. Sequi, adipisci.</p>
     </div>
     <div id="botones">
-      <button id="characters">Characters</button>
-      <button id="dimensions">Dimensions</button>
+      <button id="characters" class="charactersMenu">Characters</button>
+      <button id="dimensions" class="dimensionsMenu">Dimensions</button>
       <button id="episodes">Episodes</button>
     </div>
   </div>
-<div id="lateralMenu" class="menu">
-  <a id="closeNav" href="javascript:void(0)" class="closebtn" >&times;</a>
-  <a href="#">Characters</a>
-  <a href="#">Dimensions</a>
-  <a href="#">Episodes</a>
-</div>
-<span id="openNav">
-  <div></div>
-  <div></div>
-  <div></div>
-</span>
 
-  <div id="viewCharacters" class="d-none">
+  <div id="lateralMenu" class="menu">
+    <a id="closeNav" href="javascript:void(0)" class="closebtn">&times;</a>
+    <button class="charactersMenu">Characters</button>
+    <button class="dimensionsMenu">Dimensions</button>
+    <button>Episodes</button>
+    <button id="menuHome" href="#">Home</button>
+  </div>
+
+  <span id="openNav">
+    <div></div>
+    <div></div>
+    <div></div>
+  </span>
+
+  <div id="viewCharacters" class="d-none views">
     <div id="filterByLetter"></div>
-
     <div id="contCards"></div>
-    
-</div>
+  </div>
 
-
-<div id="myModal" class="modal">
-
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div id="containerinfo">
-      <img id="modalImg" src="https://raw.githubusercontent.com/Laboratoria/rick-and-morty-images/master/images/1.jpeg" alt="">
-      <div id="detailCharacters"> 
-        <span class="information">Status:</span>
-        <span id ="status" class="value"></span><br>
-        <span class="information">Specie:</span>
-        <span id="specie" class="value"></span><br>
-        <span class="information">Type:</span>
-        <span id="type" class="value"></span><br>
-        <span class="information">Gender:</span>
-        <span id="gender" class="value"></span><br>
-        <span class="information">Origin:</span>
-        <span id="origin" class="value"></span><br>
-        <span class="information">Location:</span>
-        <span id="location" class="value"></span><br>
+  <div id="viewWorlds" class="d-none views">
+    <button class="desplegable">
+      Dimensión 1
+    </button>
+    <div class="listWorlds subdesplegable">
+      <button class="desplegable">Nombre 1</button>
+      <div class="listCharacters subdesplegable">
+        Mostrar personajes
+      </div>
+      <button class="desplegable">Nombre 2</button>
+      <div class="listCharacters subdesplegable">
+        Mostrar personajes
+      </div>
+      <button class="desplegable">Nombre 3</button>
+      <div class="listCharacters subdesplegable">
+        Mostrar personajes
+      </div>
+      <button class="desplegable">Nombre 4</button>
+      <div class="listCharacters subdesplegable">
+        Mostrar personajes
       </div>
     </div>
-    <div id="nameEpisodes">
-      <p id="name">nombre</p>
-      <div class="dropdown">
-        <button class="episodesbtn">Episodes</button>
-        <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+  </div>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="containerinfo">
+        <img id="modalImg"
+          src="https://raw.githubusercontent.com/Laboratoria/rick-and-morty-images/master/images/1.jpeg" alt="">
+        <div id="detailCharacters">
+          <span class="information">Status:</span>
+          <span id="status" class="value"></span><br>
+          <span class="information">Specie:</span>
+          <span id="specie" class="value"></span><br>
+          <span class="information">Type:</span>
+          <span id="type" class="value"></span><br>
+          <span class="information">Gender:</span>
+          <span id="gender" class="value"></span><br>
+          <span class="information">Origin:</span>
+          <span id="origin" class="value"></span><br>
+          <span class="information">Location:</span>
+          <span id="location" class="value"></span><br>
         </div>
       </div>
+      <div id="nameEpisodes">
+        <p id="name">nombre</p>
+        <div class="dropdown">
+          <button class="episodesbtn">Episodes</button>
+          <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  </div>
-  
-
-</div>
-
-  
-
 
   <script src="main.js" type="module"></script>
 </body>

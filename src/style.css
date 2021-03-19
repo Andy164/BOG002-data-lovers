@@ -64,7 +64,7 @@ div#filterByLetter {
 .d-none {
     display: none;
 }
-div#viewCharacters {
+div.views {
     max-width: 1100px;
     margin: 50px auto;
     padding: 30px;
@@ -80,7 +80,9 @@ div#viewCharacters button {
     text-shadow: 3px 3px 5px #0df205;
     -webkit-text-stroke: 1px black;
     cursor: pointer;
-   
+}
+div#viewCharacters button:focus {
+    outline: none;
 }
 div#contCards {
     display: flex;
@@ -180,17 +182,24 @@ div#containerinfo div#detailsCharacters{
   }
   
   /* The navigation menu links */
-  .menu a {
+  .menu button, .menu a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color:#0df205;
     display: block;
     transition: 0.3s;
+    border: none;
+    background-color: #111;
+    font-family: "Patrick Hand";
+    cursor: pointer;
   }
   
-  .menu a:hover {
+  .menu button:hover, .menu a:hover {
     color: #F2E205;
+  }
+  .menu button:focus, .menu a:focus {
+    outline: none;
   }
   .menu .closebtn {
     position: absolute;
@@ -253,6 +262,56 @@ div#containerinfo div#detailsCharacters{
     }
   .dropdown:hover .dropdown-content {display: block;}
   
+  button.desplegable {
+    background-color: black;
+    color: #17aebf;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    border-radius: 10px;
+    margin: 10px 0;
+    font-size: x-large;
+    font-family: "Patrick Hand";
+    font-weight: bold;
+    position: relative;
+  }
+  /* button.desplegable::after {
+      content: '\02795';
+      position: absolute;
+      top: 15px;
+      right: 20px;
+  }
+  .active::after {
+    content: '\2796';
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  } */
+
+  div.subdesplegable {
+      padding: 0;
+      background-color: black;
+      display: none;
+      overflow: hidden;
+      font-size: larger;
+      text-align: start;
+      border-radius: 10px;
+      cursor: pointer;
+  }
+  div.subdesplegable button {
+      margin: 0;
+      padding: 18px;
+  }
+  div.subdesplegable button:hover {
+      background-color: #17aebf;
+      color: black;
+  }
+
+
 
 @media screen and (max-width: 570px) {
     #titulo p {
