@@ -217,9 +217,9 @@ fetch("https://rickandmortyapi.com/api/location")
     const dimensions = [...dimensionsSet];
     console.log(dimensions);
     cardDimensions(dimensions);
-    const listName = getName(data.results);
-    const names = [...listName];
-    console.log(names);
+    // const listName = getName(data.results);
+    // const names = [...listName];
+    // console.log(names);
     cardDesplegable(data.results, dimensions);
   });
 
@@ -230,45 +230,58 @@ function cardDimensions(listDimensions) {
     const btnDesplegable = document.createElement("button");
     btnDesplegable.className = "desplegable";
     btnDesplegable.textContent = dimension;
+    btnDesplegable.onclick = function() {
+      let panel = btnDesplegable.nextElementSibling;
+
+      if(panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    }
+
     const div = document.createElement("div");
     div.className = "listWorlds subdesplegable";
 
     containerWorlds.appendChild(btnDesplegable);
     containerWorlds.appendChild(div);
-     
   }
 }
+
 function cardDesplegable(listWorlds, dimensions) {
   const containerName = document.getElementsByClassName("listWorlds");
   const desplegable = document.getElementsByClassName("desplegable");
+  console.log(listWorlds);
   for (let index = 0; index < containerName.length; index++) {
-
     for (let place of listWorlds) {
       if (place.dimension == dimensions[index]) {
         const btnSubDesplegable = document.createElement("button");
         btnSubDesplegable.className = "desplegable";
         btnSubDesplegable.textContent = place.name;
-        desplegable[index].onclick = function () {
-          let panel = desplegable[index].nextElementSibling;
+        btnSubDesplegable.onclick = function() {
+          let panel = btnSubDesplegable.nextElementSibling;
 
-          if (panel.style.display === "block") {
+          if(panel.style.display === "block") {
             panel.style.display = "none";
           } else {
             panel.style.display = "block";
           }
-
-          containerName[index].appendChild(btnSubDesplegable);
         }
+
+        const contCharacters = document.createElement("div");
+        contCharacters.className = "listCharacters subdesplegable";
+        contCharacters.textContent = "aqui van personajes";
+        
+        containerName[index].appendChild(btnSubDesplegable);
+        containerName[index].appendChild(contCharacters);
       }
-
-
-
     }
-
   }
 }
-  // const desplegable = document.getElementsByClassName("desplegable");
-// Iteramos sobre todos los elementos que tienen la clase "desplegable"
+
+
+// const desplegable = document.getElementsByClassName("desplegable");
+// // Iteramos sobre todos los elementos que tienen la clase "desplegable"
 // for (let i = 0; i < desplegable.length; i++) {
 //   // A cada elemento desplegable le agregamos el evento click para mostrar el panel de opciones
 //   desplegable[i].addEventListener("click", () => {
@@ -278,9 +291,6 @@ function cardDesplegable(listWorlds, dimensions) {
 //       panel.style.display = "none";
 //     } else {
 //       panel.style.display = "block";
-
-//const arr = filterByLetterName(data.results, 'A');
-//const arr = filterName(data.results);
-// let list = Array.from(arr);
-
-// function viewWorlds() 
+//     }
+//   });
+// }
