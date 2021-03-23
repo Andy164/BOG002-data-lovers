@@ -1,4 +1,4 @@
-import { filterByLetterName, getDimensions, getName } from './data.js';
+import { filterByLetterName, getDimensions, getIdCharacters } from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
 
 
@@ -215,11 +215,11 @@ fetch("https://rickandmortyapi.com/api/location")
     const listDimensions = getDimensions(data.results);
     const dimensionsSet = new Set(listDimensions);
     const dimensions = [...dimensionsSet];
-    console.log(dimensions);
+
+    // Crear lista de  dimensiones
     cardDimensions(dimensions);
-    // const listName = getName(data.results);
-    // const names = [...listName];
-    // console.log(names);
+
+    // Crear lista de mundos con su lista de personajes
     cardDesplegable(data.results, dimensions);
   });
 
@@ -250,8 +250,8 @@ function cardDimensions(listDimensions) {
 
 function cardDesplegable(listWorlds, dimensions) {
   const containerName = document.getElementsByClassName("listWorlds");
-  const desplegable = document.getElementsByClassName("desplegable");
-  console.log(listWorlds);
+  // const desplegable = document.getElementsByClassName("desplegable");
+  // console.log(listWorlds);
   for (let index = 0; index < containerName.length; index++) {
     for (let place of listWorlds) {
       if (place.dimension == dimensions[index]) {
@@ -261,16 +261,36 @@ function cardDesplegable(listWorlds, dimensions) {
         btnSubDesplegable.onclick = function() {
           let panel = btnSubDesplegable.nextElementSibling;
 
-          if(panel.style.display === "block") {
+          if(panel.style.display === "flex") {
             panel.style.display = "none";
           } else {
-            panel.style.display = "block";
+            panel.style.display = "flex";
           }
         }
 
+        let idCharacters = getIdCharacters(place.residents);
+        console.log(idCharacters);
+        
         const contCharacters = document.createElement("div");
         contCharacters.className = "listCharacters subdesplegable";
-        contCharacters.textContent = "aqui van personajes";
+
+
+        for(let id of idCharacters) {
+
+          let cardCharacter = document.createElement("div");
+
+          let imgCharacter = document.createElement("img");
+          
+          imgCharacter.src = charactersData[id - 1].image;
+
+
+          let nameCharacter = document.createElement("p");
+          nameCharacter.textContent = charactersData[id - 1].name;
+
+          cardCharacter.appendChild(imgCharacter);
+          cardCharacter.appendChild(nameCharacter);
+          contCharacters.appendChild(cardCharacter);
+        }
         
         containerName[index].appendChild(btnSubDesplegable);
         containerName[index].appendChild(contCharacters);
@@ -278,6 +298,7 @@ function cardDesplegable(listWorlds, dimensions) {
     }
   }
 }
+
 
 
 // const desplegable = document.getElementsByClassName("desplegable");

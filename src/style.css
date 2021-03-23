@@ -272,7 +272,7 @@ div#containerinfo div#detailsCharacters{
     border: none;
     outline: none;
     transition: 0.4s;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: 10px 0;
     font-size: x-large;
     font-family: "Patrick Hand";
@@ -294,25 +294,50 @@ div#containerinfo div#detailsCharacters{
 
   div.subdesplegable {
       padding: 0;
-      background-color: black;
+      background-color: transparent;
       display: none;
       overflow: hidden;
       font-size: larger;
       text-align: start;
-      border-radius: 10px;
+      /*border-radius: 10px;*/
       cursor: pointer;
-      width: 95%;
       margin: 0 auto;
   }
   div.subdesplegable button {
       margin: 0;
       padding: 18px;
-  }
-  div.subdesplegable button:hover {
       background-color: #17aebf;
       color: black;
   }
+  div.subdesplegable button:hover {
+      background-color: black;
+      color: #17aebf;
+  }
 
+div.listCharacters {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: black;
+  /*display: flex;*/
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+div.listCharacters div {
+  width: 120px;
+  margin: 5px;
+}
+div.listCharacters img {
+  width: 100px;
+  padding: 10px;
+}
+div.listCharacters p {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
 
 
 @media screen and (max-width: 570px) {
@@ -343,15 +368,10 @@ div#containerinfo div#detailsCharacters{
     }
 }
 
-/*div.listWorlds button {
-  color: #F2E205;
-}*/
-
 @media screen and (min-width: 700px) {
     #titulo p {
         width: 50%;
     }
-
 }
 
 @media screen and (max-width:379px){

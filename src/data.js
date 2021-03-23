@@ -15,11 +15,13 @@ export const getDimensions = (data) =>{
 
  return dimensions;
 }
-export const getName = (data =>{
+export const getName = (data) =>{
   const nameDimensions = data.map(location=> location.name);
 
   return nameDimensions
-})
+}
+
+export const getIdCharacters = (data) => data.map((item) => item.slice(42));
 
 
 export const anotherExample = () => {
