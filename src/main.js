@@ -405,18 +405,20 @@ function cardEpiodes(listTemporades, episodes) {
         span3.textContent=episode.air_date;
 
         let idCharacters = getIdCharacters(episode.characters);
-        const containerCharacters = document.createElement("div");
-        containerCharacters.className="containerCharactersT";
-        for(let id of idCharacters) {
-          const infoCharacters = document.createElement("div");
-          infoCharacters.className="infoCharacters";
+         const containerCharacters = document.createElement("div");
+         containerCharacters.className="containerCharactersT";
+         for(let id of idCharacters) {
+           if( id <= 493){
+         const infoCharacters = document.createElement("div");
+         infoCharacters.className="infoCharacters";
           const image= document.createElement("img");
-           image.src= charactersData[id].image;
+          image.src= charactersData[id-1].image;
           const paragraf = document.createElement("p");
-          paragraf.textContent=charactersData[id].name;
+          paragraf.textContent=charactersData[id-1].name;
           infoCharacters.appendChild(image);
           infoCharacters.appendChild(paragraf);
-          containerCharacters.appendChild(infoCharacters);
+         containerCharacters.appendChild(infoCharacters);
+         }
         }
 
        
