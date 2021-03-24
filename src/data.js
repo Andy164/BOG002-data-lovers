@@ -15,18 +15,13 @@ export const getDimensions = (data) =>{
 
  return dimensions;
 }
-export const getName = (data) =>{
-  const nameDimensions = data.map(location=> location.name);
 
-  return nameDimensions
-}
 
 export const getIdCharacters = (data) => data.map((item) => item.slice(42));
 
 export const getTemporade = (data) =>{
-  const temporadas = data.map(temporada=> temporada.episode.slice(0,-3));
-  
-  
+  const temporadas = data.map(temporada=> temporada.episode);
+  return temporadas;
 
  console.log(temporadas);
 }

@@ -327,19 +327,149 @@ function cardDesplegable(listWorlds, dimensions) {
 fetch("https://rickandmortyapi.com/api/episode")
 .then(response => response.json())
   .then(data => {
-    const listEpisodes = getTemporade(data.results);
-    const episodesSet = new Set(listEpisodes);
-    const temporada = [...episodesSet];
-    console.log(temporada);
-});
+    const listTemporades= getTemporade(data.results);
+    const sliceTemporade = listTemporades.map(t => t.slice(0,-3));
+    const temporadesSet = new Set(sliceTemporade);
+    const temporada = [...temporadesSet];
 
-// const desplegable = document.getElementsByClassName("desplegable");
+    cardTemporade(temporada);
+    cardEpiodes(temporada, data.results);
+});
+function cardTemporade(listTemporades) {
+  const containerTemporades = document.getElementById("viewEpisodes");
+
+  for (let temporade of listTemporades) {
+    const btnDesplegable = document.createElement("button");
+    btnDesplegable.className = "desplegableTemporades";
+    btnDesplegable.textContent = "Season "+temporade ;
+    btnDesplegable.onclick = function() {
+      let panel = btnDesplegable.nextElementSibling;
+
+      if(panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    }
+
+    const div = document.createElement("div");
+    div.className = "listEpisodes subdesplegableTemporades";
+
+    containerTemporades.appendChild(btnDesplegable);
+    containerTemporades.appendChild(div);
+  }
+}
+function cardEpiodes(listTemporades, episodes) {
+  const containerName = document.getElementsByClassName("listEpisodes");
+  // const desplegable = document.getElementsByClassName("desplegable");
+   console.log(listTemporades);
+  for (let index = 0; index < containerName.length; index++) {
+    for (let episode of episodes) {
+      console.log(episode.episode.slice(0,-3));
+      if (episode.episode.slice(0,-3) == listTemporades[index]) {
+        const btnSubDesplegable = document.createElement("button");
+        btnSubDesplegable.className = "desplegableTemporades";
+        btnSubDesplegable.textContent = episode.name;
+        btnSubDesplegable.onclick = function() {
+          let panel = btnSubDesplegable.nextElementSibling;
+
+        containerName.appendChild(btnSubDesplegable);
+
+          if(panel.style.display === "flex") {
+            panel.style.display = "none";
+          } else {
+            panel.style.display = "flex";
+          }
+        }
+        const info = document.createElement("div");
+        info.className="infoEpisodes subdesplegableTemporades";
+
+        btnSubDesplegable.appendChild(info);
+        
+
+        const infoEpisodes = document.createElement("div");
+        infoEpisodes.className="infoForEpisode";
+
+        const h2 = document.createElement("h2");
+        h2.textContent=episodes.name;
+
+        const p = document.createElement("p");
+        const span1 = document.createElement ("span");
+        span1.className="number";
+        span1.textContent=episode.espisode
+        const span2 = document.createElement ("span");
+        span2.className="toSeparate";
+        const span3 = document.createElement ("span");
+        span3.className="date";
+        span3.textContent=episode.air_date;
+
+        const containerCharacters = document.createElement("div");
+        containerCharacters.className="containerCharactersT";
+
+        const infoCharacters = document.createElement("div");
+        infoCharacters.className="infoCharacters";
+        const image= document.createElement("img")
+        // image.src=
+        const paragraf = document.createElement("p")
+        // paragraf.textContent
+        
+        info.appendChild(infoEpisodes);
+        info.appendChild(containerCharacters);
+        infoEpisodes.appendChild(h2);
+        p.appendChild(span1);
+        p.appendChild(span2);
+        p.appendChild(span3);
+        infoEpisodes.appendChild(p);
+        infoCharacters.appendChild(image);
+        infoCharacters.appendChild(paragraf);
+        containerCharacters.appendChild(infoCharacters);
+        
+
+
+
+
+
+
+
+
+      //   let idCharacters = getIdCharacters(place.residents);
+      //   // console.log(idCharacters);
+        
+      //   const contCharacters = document.createElement("div");
+      //   contCharacters.className = "listCharacters subdesplegable";
+
+
+      //   for(let id of idCharacters) {
+
+      //     let cardCharacter = document.createElement("div");
+
+      //     let imgCharacter = document.createElement("img");
+          
+      //     imgCharacter.src = charactersData[id - 1].image;
+
+
+      //     let nameCharacter = document.createElement("p");
+      //     nameCharacter.textContent = charactersData[id - 1].name;
+
+      //     cardCharacter.appendChild(imgCharacter);
+      //     cardCharacter.appendChild(nameCharacter);
+      //     contCharacters.appendChild(cardCharacter);
+      //  }
+        
+      //  containerName[index].appendChild(btnSubDesplegable);
+      //  containerName[index].appendChild(contCharacters);
+       }
+    }
+  }
+}
+// const desplegable = document.getElementsByClassName("desplegableTemporades");
+
 // // Iteramos sobre todos los elementos que tienen la clase "desplegable"
 // for (let i = 0; i < desplegable.length; i++) {
 //   // A cada elemento desplegable le agregamos el evento click para mostrar el panel de opciones
 //   desplegable[i].addEventListener("click", () => {
 //     let panel = desplegable[i].nextElementSibling;
-
+//   console.log(panel);
 //     if(panel.style.display === "block") {
 //       panel.style.display = "none";
 //     } else {

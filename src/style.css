@@ -339,9 +339,92 @@ div.listCharacters p {
   width: 100%;
 }
 #viewEpisodes{display: none;}
-#viewEpisodes button {
-    color:  #0df205;
-}
+button.desplegableTemporades {
+    background-color: black;
+    color:#0df205;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: x-large;
+    font-family: "Patrick Hand";
+    font-weight: bold;
+    position: relative;
+  }
+
+  div.subdesplegableTemporades {
+      padding: 0;
+      background-color: transparent;
+      display: none;
+      overflow: hidden;
+      font-size: larger;
+      text-align: start;
+      /*border-radius: 10px;*/
+      cursor: pointer;
+      margin: 0 auto;
+  }
+  div.subdesplegableTemporades button {
+      margin: 0;
+      padding: 18px;
+      background-color:black;
+      color:#0df205;
+  }
+  div.subdesplegableTemporades button:hover {
+      background-color: #0df205;
+      color:black;
+  }
+  div.listEpisodes {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: black;
+    /*display: flex;*/
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  div.infoCharacters {
+    width: 120px;
+    margin: 5px;
+  }
+  div.infoCharacters img {
+    width: 100px;
+    padding: 10px;
+  }
+  div.infoCharacters p {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    width: 100%;
+  }
+  .containerCharactersT{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+  .infoForEpisode h2{
+      color: #F2E205;
+      
+  }
+  .infoEpisodes{
+      padding: 20px;
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 570px) {
     #titulo p {
