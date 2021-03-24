@@ -1,7 +1,7 @@
 import { filterByLetterName, getDimensions, getIdCharacters, getTemporade  } from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
 
-
+let episodesData= [];
 // Guardar en la constante characters el arreglo de objetos que contienen la información de cada personaje
 const charactersData = data.results;
 
@@ -166,6 +166,9 @@ function listCharacters(listCharacters) {
       document.getElementById("gender").innerHTML = character.gender;
       document.getElementById("origin").innerHTML = character.origin.name;
       document.getElementById("location").innerHTML = character.location.name;
+      document.getElementsByClassName("dropdown")[0].style.display="block";
+      listEpisodes(character.episode);
+
     }
 
     // Creamos un etiqueta p para mostrar el nombre del personaje en la tarjeta
@@ -213,7 +216,23 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 }
+function listEpisodes(listEpisodes){
+ 
+  const container= document.getElementsByClassName("dropdown-content")[0];
+  container.innerHTML=""
 
+  for (let episode of listEpisodes ){
+    const episodio = document.createElement("a")
+   episodio.textContent= episodesData[episode.slice(40)-1].name;
+  container.appendChild(episodio);
+   console.log(episode.slice(40));
+ 
+
+}
+    
+
+  
+}
 
 // MENÚ HAMBURGUESA -----------------------------------------------------------------------------------------------
 // Función para mostrar el menú
@@ -299,15 +318,38 @@ function cardDesplegable(listWorlds, dimensions) {
         
         const contCharacters = document.createElement("div");
         contCharacters.className = "listCharacters subdesplegable";
+        const titulo= document.createElement("h2");
+        titulo.textContent="Residents";
+        titulo.style.width="100%";
+        titulo.style.textAlign="center";
 
+        contCharacters.appendChild(titulo);
 
         for(let id of idCharacters) {
+          if(id <= 492){
 
           let cardCharacter = document.createElement("div");
 
           let imgCharacter = document.createElement("img");
           
           imgCharacter.src = charactersData[id - 1].image;
+          imgCharacter.onclick = function () {
+            // Aquí obtener los elementos que estructuran el modal que mostrará los detalles de cada personaje
+            // Mostramos el modal (ventana emergente)-------------------------------------------------------------------
+            modal.style.display = "block";
+            // Pasamos la url de la imagen
+            document.getElementById("modalImg").src = charactersData[id - 1].image;
+            // Pasamos el resto de información
+            document.getElementById("name").innerHTML = charactersData[id - 1].name;
+            document.getElementById("status").innerHTML = charactersData[id - 1].status;
+            document.getElementById("specie").innerHTML = charactersData[id - 1].species;
+            document.getElementById("type").innerHTML = charactersData[id - 1].type;
+            document.getElementById("gender").innerHTML = charactersData[id - 1].gender;
+            document.getElementById("origin").innerHTML = charactersData[id - 1].origin.name;
+            document.getElementById("location").innerHTML = charactersData[id - 1].location.name;
+            document.getElementsByClassName("dropdown")[0].style.display="block";
+            listEpisodes(charactersData[id - 1]).episode;
+          }
 
 
           let nameCharacter = document.createElement("p");
@@ -316,10 +358,12 @@ function cardDesplegable(listWorlds, dimensions) {
           cardCharacter.appendChild(imgCharacter);
           cardCharacter.appendChild(nameCharacter);
           contCharacters.appendChild(cardCharacter);
-        }
+          }
+         }
         
         containerName[index].appendChild(btnSubDesplegable);
         containerName[index].appendChild(contCharacters);
+       
       }
     }
   }
@@ -327,6 +371,7 @@ function cardDesplegable(listWorlds, dimensions) {
 fetch("https://rickandmortyapi.com/api/episode")
 .then(response => response.json())
   .then(data => {
+    episodesData=data.results;
     const listTemporades= getTemporade(data.results);
     const sliceTemporade = listTemporades.map(t => t.slice(0,-3));
     const temporadesSet = new Set(sliceTemporade);
@@ -362,10 +407,8 @@ function cardTemporade(listTemporades) {
 function cardEpiodes(listTemporades, episodes) {
   const containerName = document.getElementsByClassName("listEpisodes");
   // const desplegable = document.getElementsByClassName("desplegable");
-   console.log(listTemporades);
   for (let index = 0; index < containerName.length; index++) {
     for (let episode of episodes) {
-      console.log(episode.episode.slice(0,-3));
       if (episode.episode.slice(0,-3) == listTemporades[index]) {
         const btnSubDesplegable = document.createElement("button");
         btnSubDesplegable.className = "desplegableTemporades";
@@ -413,6 +456,23 @@ function cardEpiodes(listTemporades, episodes) {
          infoCharacters.className="infoCharacters";
           const image= document.createElement("img");
           image.src= charactersData[id-1].image;
+          image.onclick = function () {
+            // Aquí obtener los elementos que estructuran el modal que mostrará los detalles de cada personaje
+            // Mostramos el modal (ventana emergente)-------------------------------------------------------------------
+            modal.style.display = "block";
+            // Pasamos la url de la imagen
+            document.getElementById("modalImg").src = charactersData[id - 1].image;
+            // Pasamos el resto de información
+            document.getElementById("name").innerHTML = charactersData[id - 1].name;
+            document.getElementById("status").innerHTML = charactersData[id - 1].status;
+            document.getElementById("specie").innerHTML = charactersData[id - 1].species;
+            document.getElementById("type").innerHTML = charactersData[id - 1].type;
+            document.getElementById("gender").innerHTML = charactersData[id - 1].gender;
+            document.getElementById("origin").innerHTML = charactersData[id - 1].origin.name;
+            document.getElementById("location").innerHTML = charactersData[id - 1].location.name;
+
+            document.getElementsByClassName("dropdown")[0].style.display="none";
+          }
           const paragraf = document.createElement("p");
           paragraf.textContent=charactersData[id-1].name;
           infoCharacters.appendChild(image);

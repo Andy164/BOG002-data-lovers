@@ -249,6 +249,8 @@ div#containerinfo div#detailsCharacters{
     z-index: 1;
     margin-top: 5px;
     border-radius: 10px;
+    left: -520%;
+    width: 600px;
   }
   .dropdown-content a {
     color: black;
@@ -257,7 +259,7 @@ div#containerinfo div#detailsCharacters{
     display: block;
     font-size: 20px;
   }
-  .dropdown-content a:hover {background-color:black;
+  .dropdown-content a:focus {background-color:black;
      color: #F2E205
     }
   .dropdown:hover .dropdown-content {display: block;}
