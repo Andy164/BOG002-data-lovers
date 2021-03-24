@@ -338,7 +338,10 @@ div.listCharacters p {
   text-align: center;
   width: 100%;
 }
-
+#viewEpisodes{display: none;}
+#viewEpisodes button {
+    color:  #0df205;
+}
 
 @media screen and (max-width: 570px) {
     #titulo p {

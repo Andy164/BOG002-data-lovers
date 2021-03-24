@@ -23,6 +23,14 @@ export const getName = (data) =>{
 
 export const getIdCharacters = (data) => data.map((item) => item.slice(42));
 
+export const getTemporade = (data) =>{
+  const temporadas = data.map(temporada=> temporada.episode.slice(0,-3));
+  
+  
+
+ console.log(temporadas);
+}
+
 
 export const anotherExample = () => {
   return 'OMG';

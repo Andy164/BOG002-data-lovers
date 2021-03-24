@@ -1,4 +1,4 @@
-import { filterByLetterName, getDimensions, getIdCharacters } from './data.js';
+import { filterByLetterName, getDimensions, getIdCharacters, getTemporade  } from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
 
 
@@ -28,6 +28,9 @@ for (let index = 0; index < btnsToCharacters.length; index++) {
     // Ocultamos vista de los mundos
     const viewWorlds = document.getElementById("viewWorlds");
     viewWorlds.style.display = "none";
+
+    const viewEpisodes = document.getElementById("viewEpisodes");
+    viewEpisodes.style.display = "none";
   });
 }
 
@@ -47,6 +50,29 @@ for (let index = 0; index < btnsToDimensions.length; index++) {
 
     const viewCharacters = document.getElementById("viewCharacters");
     viewCharacters.style.display = "none";
+
+    const viewEpisodes = document.getElementById("viewEpisodes");
+    viewEpisodes.style.display = "none";
+  });
+}
+const btnsToEpisodes = document.getElementsByClassName("episodesmenu");
+// Iteramos sobre los botones de characters del menú principal y menú hamburguesa
+for (let index = 0; index < btnsToEpisodes.length; index++) {
+  btnsToEpisodes[index].addEventListener("click", () => {
+    const viewEpisodes = document.getElementById("viewEpisodes");
+    viewEpisodes.style.display = "block";
+
+    const viewHome = document.getElementById("titulo");
+    viewHome.style.display = "none";
+
+    const menu = document.getElementById("openNav");
+    menu.style.display = "block";
+
+    const viewCharacters = document.getElementById("viewCharacters");
+    viewCharacters.style.display = "none";
+
+    const worlds = document.getElementById("viewWorlds");
+    worlds.style.display = "none";
   });
 }
 
@@ -269,7 +295,7 @@ function cardDesplegable(listWorlds, dimensions) {
         }
 
         let idCharacters = getIdCharacters(place.residents);
-        console.log(idCharacters);
+        // console.log(idCharacters);
         
         const contCharacters = document.createElement("div");
         contCharacters.className = "listCharacters subdesplegable";
@@ -298,8 +324,14 @@ function cardDesplegable(listWorlds, dimensions) {
     }
   }
 }
-
-
+fetch("https://rickandmortyapi.com/api/episode")
+.then(response => response.json())
+  .then(data => {
+    const listEpisodes = getTemporade(data.results);
+    const episodesSet = new Set(listEpisodes);
+    const temporada = [...episodesSet];
+    console.log(temporada);
+});
 
 // const desplegable = document.getElementsByClassName("desplegable");
 // // Iteramos sobre todos los elementos que tienen la clase "desplegable"
