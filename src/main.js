@@ -373,45 +373,53 @@ function cardEpiodes(listTemporades, episodes) {
         btnSubDesplegable.onclick = function() {
           let panel = btnSubDesplegable.nextElementSibling;
 
-        containerName.appendChild(btnSubDesplegable);
+        
 
-          if(panel.style.display === "flex") {
+          if(panel.style.display === "block") {
             panel.style.display = "none";
           } else {
-            panel.style.display = "flex";
+            panel.style.display = "block";
           }
         }
         const info = document.createElement("div");
         info.className="infoEpisodes subdesplegableTemporades";
 
-        btnSubDesplegable.appendChild(info);
-        
+        containerName[index].appendChild(btnSubDesplegable);
+        containerName[index].appendChild(info);
 
         const infoEpisodes = document.createElement("div");
         infoEpisodes.className="infoForEpisode";
 
         const h2 = document.createElement("h2");
-        h2.textContent=episodes.name;
+        h2.textContent=episode.name;
 
         const p = document.createElement("p");
         const span1 = document.createElement ("span");
         span1.className="number";
-        span1.textContent=episode.espisode
+        span1.textContent=episode.episode
         const span2 = document.createElement ("span");
         span2.className="toSeparate";
+        span2.textContent=" | "
         const span3 = document.createElement ("span");
         span3.className="date";
         span3.textContent=episode.air_date;
 
+        let idCharacters = getIdCharacters(episode.characters);
         const containerCharacters = document.createElement("div");
         containerCharacters.className="containerCharactersT";
+        for(let id of idCharacters) {
+          const infoCharacters = document.createElement("div");
+          infoCharacters.className="infoCharacters";
+          const image= document.createElement("img");
+           image.src= charactersData[id].image;
+          const paragraf = document.createElement("p");
+          paragraf.textContent=charactersData[id].name;
+          infoCharacters.appendChild(image);
+          infoCharacters.appendChild(paragraf);
+          containerCharacters.appendChild(infoCharacters);
+        }
 
-        const infoCharacters = document.createElement("div");
-        infoCharacters.className="infoCharacters";
-        const image= document.createElement("img")
-        // image.src=
-        const paragraf = document.createElement("p")
-        // paragraf.textContent
+       
         
         info.appendChild(infoEpisodes);
         info.appendChild(containerCharacters);
@@ -420,44 +428,10 @@ function cardEpiodes(listTemporades, episodes) {
         p.appendChild(span2);
         p.appendChild(span3);
         infoEpisodes.appendChild(p);
-        infoCharacters.appendChild(image);
-        infoCharacters.appendChild(paragraf);
-        containerCharacters.appendChild(infoCharacters);
         
 
-
-
-
-
-
-
-
-      //   let idCharacters = getIdCharacters(place.residents);
-      //   // console.log(idCharacters);
+       
         
-      //   const contCharacters = document.createElement("div");
-      //   contCharacters.className = "listCharacters subdesplegable";
-
-
-      //   for(let id of idCharacters) {
-
-      //     let cardCharacter = document.createElement("div");
-
-      //     let imgCharacter = document.createElement("img");
-          
-      //     imgCharacter.src = charactersData[id - 1].image;
-
-
-      //     let nameCharacter = document.createElement("p");
-      //     nameCharacter.textContent = charactersData[id - 1].name;
-
-      //     cardCharacter.appendChild(imgCharacter);
-      //     cardCharacter.appendChild(nameCharacter);
-      //     contCharacters.appendChild(cardCharacter);
-      //  }
-        
-      //  containerName[index].appendChild(btnSubDesplegable);
-      //  containerName[index].appendChild(contCharacters);
        }
     }
   }

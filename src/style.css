@@ -372,7 +372,7 @@ button.desplegableTemporades {
       margin: 0;
       padding: 18px;
       background-color:black;
-      color:#0df205;
+      color:white;
   }
   div.subdesplegableTemporades button:hover {
       background-color: #0df205;
@@ -398,7 +398,7 @@ button.desplegableTemporades {
   div.infoCharacters p {
     margin: 0 0 10px 0;
     font-size: 18px;
-    color: white;
+    color: #0df205;
     text-align: center;
     width: 100%;
   }
