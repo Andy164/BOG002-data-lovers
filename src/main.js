@@ -260,6 +260,7 @@ fetch("https://rickandmortyapi.com/api/location")
     const listDimensions = getDimensions(data.results);
     const dimensionsSet = new Set(listDimensions);
     const dimensions = [...dimensionsSet];
+    console.log(dimensions);
 
     // Crear lista de  dimensiones
     cardDimensions(dimensions);
@@ -268,12 +269,31 @@ fetch("https://rickandmortyapi.com/api/location")
     cardDesplegable(data.results, dimensions);
   });
 
+
+const inputSearch = document.getElementById("searchName");
+inputSearch.onkeyup = function() {
+  searchNameDimension();
+}
+
+function searchNameDimension() {
+  let value = inputSearch.value.toUpperCase();
+  const buttonsDimensions = document.getElementsByClassName("btn-dimension");
+
+  for(let i = 0; i < buttonsDimensions.length; i++) {
+    if(buttonsDimensions[i].textContent.toUpperCase().includes(value)) {
+      buttonsDimensions[i].style.display = "block";
+    } else {
+      buttonsDimensions[i].style.display = "none";
+    }
+  }
+}
+
 function cardDimensions(listDimensions) {
   const containerWorlds = document.getElementById("viewWorlds");
 
   for (let dimension of listDimensions) {
     const btnDesplegable = document.createElement("button");
-    btnDesplegable.className = "desplegable";
+    btnDesplegable.className = "desplegable btn-dimension";
     btnDesplegable.textContent = dimension;
     btnDesplegable.onclick = function() {
       let panel = btnDesplegable.nextElementSibling;
@@ -348,7 +368,7 @@ function cardDesplegable(listWorlds, dimensions) {
             document.getElementById("origin").innerHTML = charactersData[id - 1].origin.name;
             document.getElementById("location").innerHTML = charactersData[id - 1].location.name;
             document.getElementsByClassName("dropdown")[0].style.display="block";
-            listEpisodes(charactersData[id - 1]).episode;
+            listEpisodes(charactersData[id - 1].episode);
           }
 
 
