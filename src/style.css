@@ -418,19 +418,21 @@ button.desplegableTemporades {
   }
 
 
-input {
-  width: 100%;
-  background-color: black;
-  color: #0df205;
-  padding: 10px 20px;
-  font-size: large;
-  border: none;
-  margin-bottom: 20px;
-}
+  input {
+    width: 100%;
+    background-color: black;
+    color: #0df205;
+    padding: 10px 20px;
+    font-size: large;
+    border: none;
+    margin-bottom: 20px;
+  }
+  
+  input:focus {
+    outline: none;
+  }
 
-input:focus {
-  outline: none;
-}
+
 
 
 
