@@ -86,6 +86,12 @@ function showHome() {
 
   const viewWorlds = document.getElementById("viewWorlds");
   viewWorlds.style.display = "none";
+
+  const viewEpisodes=  document.getElementById("viewEpisodes");
+  viewEpisodes.style.display = "none";
+
+  const menu=document.getElementById("openNav");
+  menu.style.display = "none";
 }
 const btnHome = document.getElementById("menuHome");
 btnHome.onclick = () => {
