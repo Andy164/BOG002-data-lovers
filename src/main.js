@@ -278,7 +278,6 @@ inputSearch.onkeyup = function() {
 function searchNameDimension() {
   let value = inputSearch.value.toUpperCase();
   const buttonsDimensions = document.getElementsByClassName("btn-dimension");
-
   for(let i = 0; i < buttonsDimensions.length; i++) {
     if(buttonsDimensions[i].textContent.toUpperCase().includes(value)) {
       buttonsDimensions[i].style.display = "block";
@@ -304,10 +303,13 @@ function cardDimensions(listDimensions) {
         panel.style.display = "block";
       }
     }
-
+    const imagen= document.createElement("img");
+    imagen.className="imagenDesplegable";
+    imagen.src="./img/agujero-negro.svg";
     const div = document.createElement("div");
     div.className = "listWorlds subdesplegable";
 
+    btnDesplegable.appendChild(imagen);
     containerWorlds.appendChild(btnDesplegable);
     containerWorlds.appendChild(div);
   }

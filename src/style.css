@@ -3,6 +3,7 @@ body {
     background-image: url(./img/fondo.jpg);
     height: 100vh;
     width: 100vw;
+
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover;
@@ -23,10 +24,10 @@ body {
     background-repeat: no-repeat; 
     background-size: cover;
     background-attachment: fixed;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100vh
 }
 #titulo p {
     color: white;
@@ -280,6 +281,7 @@ div#containerinfo div#detailsCharacters{
     font-family: "Patrick Hand";
     font-weight: bold;
     position: relative;
+    padding-left: 50px;
   }
   /* button.desplegable::after {
       content: '\02795';
@@ -314,6 +316,11 @@ div#containerinfo div#detailsCharacters{
   div.subdesplegable button:hover {
       background-color: black;
       color: #17aebf;
+  }
+  .imagenDesplegable{
+      width: 30px;
+      left: 10px;
+      position: absolute;
   }
 
 div.listCharacters {
@@ -438,6 +445,20 @@ button.desplegableTemporades {
 
 
 
+@media screen and (max-width: 700px) {
+    
+    .modal-content {
+        width: 70%;
+    }
+    #containerinfo img{
+        width: 40%;
+       
+    }
+    .dropdown-content {
+        width: 400px;
+        left: -300%;
+    }
+}
 
 
 
@@ -464,14 +485,23 @@ button.desplegableTemporades {
     .menu a {font-size: 22px;}
     #containerinfo img{
         width: 50%;
-       height:50%;
-       
+       height:50%;  
+    }
+    .dropdown-content {
+        width: 200px;
+        left: -100%;
+    }
+    #titulo{
+        height: 100%;
     }
 }
 
 @media screen and (min-width: 700px) {
     #titulo p {
         width: 50%;
+    }
+    #titulo{
+        height: 100%;
     }
 }
 
@@ -491,14 +521,19 @@ button.desplegableTemporades {
         flex-wrap: wrap;
         flex-direction: column;
     }
-}
-@media screen and (max-width: 700px) {
-    
-    .modal-content {
-        width: 70%;
+    .dropdown-content {
+        width: 100%;
+        left: 0;
     }
-    #containerinfo img{
-        width: 40%;
-       
+    #titulo{
+        height: auto;
+    }
+    #botones{
+        margin-right: 0;
     }
 }
+/* @media screen and (max-height:600){
+    #titulo{
+        height: 130%;
+    }
+} */
