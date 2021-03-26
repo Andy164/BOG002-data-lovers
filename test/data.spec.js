@@ -1,97 +1,70 @@
-import { filterName} from '../src/data.js';
+import { filterByLetterName, getIdCharacters, getTemporade, getDimensions } from '../src/data.js';
+import data from '../src/data/rickandmorty/rickandmorty.js';
+import { episodesData, locationData } from './results.js';
+
+const charactersData = data.results;
 
 
-describe('filterName', () => {
+describe('filterByLetterName', () => {
   it('is a function', () => {
-    expect(typeof filterName).toBe('function');
+    expect(typeof filterByLetterName).toBe('function');
   });
 
-  it('returns Rick Sanchez', () => {
-    const datafalsa=[{
-      "id": 7,
-      "name": "Abradolf Lincler",
-      "status": "unknown",
-      "species": "Human",
-      "type": "Genetic experiment",
-      "gender": "Male",
-      "origin": {
-          "name": "Earth (Replacement Dimension)",
-          "url": "https://rickandmortyapi.com/api/location/20"
-      },
-      "location": {
-          "name": "Testicle Monster Dimension",
-          "url": "https://rickandmortyapi.com/api/location/21"
-      },
-      "image": "https://raw.githubusercontent.com/Laboratoria/rick-and-morty-images/master/images/7.jpeg",
-      "episode": [
-          "https://rickandmortyapi.com/api/episode/10",
-          "https://rickandmortyapi.com/api/episode/11"
-      ],
-      "url": "https://rickandmortyapi.com/api/character/7",
-      "created": "2017-11-04T19:59:20.523Z"
-  },{
-    "id": 1,
-    "name": "Rick Sanchez",
-    "status": "Alive",
-    "species": "Human",
-    "type": "",
-    "gender": "Male",
-    "origin": {
-        "name": "Earth (C-137)",
-        "url": "https://rickandmortyapi.com/api/location/1"
-    },
-    "location": {
-        "name": "Earth (Replacement Dimension)",
-        "url": "https://rickandmortyapi.com/api/location/20"
-    },
-    "image": "https://raw.githubusercontent.com/Laboratoria/rick-and-morty-images/master/images/1.jpeg",
-    "episode": [
-        "https://rickandmortyapi.com/api/episode/1",
-        "https://rickandmortyapi.com/api/episode/2",
-        "https://rickandmortyapi.com/api/episode/3",
-        "https://rickandmortyapi.com/api/episode/4",
-        "https://rickandmortyapi.com/api/episode/5",
-        "https://rickandmortyapi.com/api/episode/6",
-        "https://rickandmortyapi.com/api/episode/7",
-        "https://rickandmortyapi.com/api/episode/8",
-        "https://rickandmortyapi.com/api/episode/9",
-        "https://rickandmortyapi.com/api/episode/10",
-        "https://rickandmortyapi.com/api/episode/11",
-        "https://rickandmortyapi.com/api/episode/12",
-        "https://rickandmortyapi.com/api/episode/13",
-        "https://rickandmortyapi.com/api/episode/14",
-        "https://rickandmortyapi.com/api/episode/15",
-        "https://rickandmortyapi.com/api/episode/16",
-        "https://rickandmortyapi.com/api/episode/17",
-        "https://rickandmortyapi.com/api/episode/18",
-        "https://rickandmortyapi.com/api/episode/19",
-        "https://rickandmortyapi.com/api/episode/20",
-        "https://rickandmortyapi.com/api/episode/21",
-        "https://rickandmortyapi.com/api/episode/22",
-        "https://rickandmortyapi.com/api/episode/23",
-        "https://rickandmortyapi.com/api/episode/24",
-        "https://rickandmortyapi.com/api/episode/25",
-        "https://rickandmortyapi.com/api/episode/26",
-        "https://rickandmortyapi.com/api/episode/27",
-        "https://rickandmortyapi.com/api/episode/28",
-        "https://rickandmortyapi.com/api/episode/29",
-        "https://rickandmortyapi.com/api/episode/30",
-        "https://rickandmortyapi.com/api/episode/31"
-    ],
-    "url": "https://rickandmortyapi.com/api/character/1",
-    "created": "2017-11-04T18:48:46.250Z"
-}]
-    expect(filterName(datafalsa)).toBe(["Rick Sanchez","Abradolf Lincler"]);
+  it('should return an array of 3 characters', () => {
+    expect(filterByLetterName(charactersData, 'U')).toHaveLength(3);
+  });
+
+  it('should return an array', () => {
+    expect(Array.isArray(filterByLetterName(charactersData, 'B'))).toBeTruthy();
+  });
+
+  it('should return Morty Smith', () => {
+    expect(filterByLetterName(charactersData, 'M')[0].name).toBe('Morty Smith');
   });
 });
 
 
-describe('anotherExample', () => {
+describe('getIdCharacters', () => {
   it('is a function', () => {
-    expect(typeof anotherExample).toBe('function');
+    expect(typeof getIdCharacters).toBe('function');
   });
 
-  //it('returns `anotherExample`', () => {
-    //expect(anotherExample()).toBe('OMG');
+  const url = ["https://rickandmortyapi.com/api/character/10"];
+
+  it('should return "10"', () => {
+    expect(getIdCharacters(url)[0]).toBe("10");
   });
 
+  it('should return an array', () => {
+    expect(Array.isArray(getIdCharacters(url))).toBeTruthy();
+  });
+});
+
+
+describe('getTemporade', () => {
+  it('is a function', () => {
+    expect(typeof getIdCharacters).toBe('function');
+  });
+
+  it('should return an array', () => {
+    expect(Array.isArray(getTemporade(episodesData))).toBeTruthy();
+  });
+
+  it('should return "S01E01"', () => {
+    expect(getTemporade(episodesData)[0]).toBe('S01E01');
+  });
+});
+
+describe('getDimensions', () => {
+  it('is a function', () => {
+    expect(typeof getDimensions).toBe('function');
+  });
+
+  it('should return an array', () => {
+    expect(Array.isArray(getDimensions(locationData))).toBeTruthy();
+  });
+
+  it('should return "Dimension C-137"', () => {
+    expect(getDimensions(locationData)[0]).toBe('Dimension C-137');
+  });
+});

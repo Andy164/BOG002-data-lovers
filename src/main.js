@@ -229,15 +229,9 @@ function listEpisodes(listEpisodes){
 
   for (let episode of listEpisodes ){
     const episodio = document.createElement("a")
-   episodio.textContent= episodesData[episode.slice(40)-1].name;
-  container.appendChild(episodio);
-   console.log(episode.slice(40));
- 
-
-}
-    
-
-  
+    episodio.textContent= episodesData[episode.slice(40)-1].name;
+    container.appendChild(episodio);
+  }  
 }
 
 // MENÚ HAMBURGUESA -----------------------------------------------------------------------------------------------
@@ -264,9 +258,9 @@ fetch("https://rickandmortyapi.com/api/location")
   .then(response => response.json())
   .then(data => {
     const listDimensions = getDimensions(data.results);
+    // eslint-disable-next-line no-undef
     const dimensionsSet = new Set(listDimensions);
     const dimensions = [...dimensionsSet];
-    console.log(dimensions);
 
     // Crear lista de  dimensiones
     cardDimensions(dimensions);
@@ -323,8 +317,6 @@ function cardDimensions(listDimensions) {
 
 function cardDesplegable(listWorlds, dimensions) {
   const containerName = document.getElementsByClassName("listWorlds");
-  // const desplegable = document.getElementsByClassName("desplegable");
-  // console.log(listWorlds);
   for (let index = 0; index < containerName.length; index++) {
     for (let place of listWorlds) {
       if (place.dimension == dimensions[index]) {
@@ -342,8 +334,7 @@ function cardDesplegable(listWorlds, dimensions) {
         }
 
         let idCharacters = getIdCharacters(place.residents);
-        // console.log(idCharacters);
-        
+
         const contCharacters = document.createElement("div");
         contCharacters.className = "listCharacters subdesplegable";
         const titulo= document.createElement("h2");
@@ -402,6 +393,7 @@ fetch("https://rickandmortyapi.com/api/episode")
     episodesData=data.results;
     const listTemporades= getTemporade(data.results);
     const sliceTemporade = listTemporades.map(t => t.slice(0,-3));
+    // eslint-disable-next-line no-undef
     const temporadesSet = new Set(sliceTemporade);
     const temporada = [...temporadesSet];
 
