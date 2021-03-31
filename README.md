@@ -85,7 +85,7 @@ en este link de [trello] (https://trello.com/invite/b/ceeViNat/d5861e20bceed3ddd
 
 #### Prototipo de baja fidelidad
 Basandonos en las historias de usuario creamos un prototipo de baja fidelidad que cumpliera con las expectativas y los criterios de aceptacion.
-<img src="./img/prototipo.jpeg">
+<img src="./src/img/prototipo.jpeg">
 
 #### Prototipo de alta fidelidad
 
@@ -101,9 +101,9 @@ No habia un boton que permitiera regresar a la pantalla principal, se añade el 
 
 ## 4. Hacker edition
 
-<img src="./img/grafica1.PNG">
-<img src="./img/grafica2.PNG">
-<img src="./img/grafica3.PNG">
+<img src="./src/img/grafica1.PNG">
+<img src="./src/img/grafica2.PNG">
+<img src="./src/img/grafica3.PNG">
 
 ## 5. Herramientas
 
