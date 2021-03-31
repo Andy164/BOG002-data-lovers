@@ -102,8 +102,8 @@ No habia un boton que permitiera regresar a la pantalla principal, se añade el 
 ## 4. Hacker edition
 
 <img src="./src/img/grafica1.PNG">
-<img src="./src/img/grafica2.PNG">
-<img src="./src/img/grafica3.PNG">
+<img src="./src/img/grafica 2.PNG">
+<img src="./src/img/grafica 3.PNG">
 
 ## 5. Herramientas
 
