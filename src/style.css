@@ -472,6 +472,9 @@ input:focus {
         width: 400px;
         left: -300%;
     }
+    /*#myChartStatus, #myChartGender, #myChartMainCharcaters {
+      height: 400px !important;
+    }*/
 }
 
 
@@ -508,6 +511,10 @@ input:focus {
     #titulo{
         height: 100%;
     }
+
+    /*#myChartStatus, #myChartGender, #myChartMainCharcaters {
+      height: 300px !important;
+    }*/
 }
 
 @media screen and (min-width: 700px) {

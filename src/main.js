@@ -243,7 +243,7 @@ function removeCharacters(charactersData) {
 }
 
 
-// VENTANA EMERGENTE ---------------------------------------------------------------------------------------------
+// VENTANA EMERGENTE Mostrar información personajes -----------------------------------------------------
 const modal = document.getElementById("myModal");
 const span = document.getElementsByClassName("close")[0];
 // Agregamos evento click al botón X que cierra la ventana emergente
@@ -257,9 +257,11 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 }
+
+// Episodios en la ventana emergente
 function listEpisodes(listEpisodes){
- 
   const container= document.getElementsByClassName("dropdown-content")[0];
+  // Vaciar el contenedor de la lista de episodios
   container.innerHTML=""
 
   for (let episode of listEpisodes ){
@@ -304,7 +306,7 @@ fetch("https://rickandmortyapi.com/api/location")
     cardDesplegable(data.results, dimensions);
   });
 
-
+// FILTRO DE BÚSQUEDA POR NOMBRE DE DIMENSIÓN --------------------------------------------------
 const inputSearch = document.getElementById("searchName");
 inputSearch.onkeyup = function() {
   searchNameDimension();
@@ -322,6 +324,7 @@ function searchNameDimension() {
   }
 }
 
+// LISTA DE DIMENSIONES -----------------------------------------------------------------
 function cardDimensions(listDimensions) {
   const containerWorlds = document.getElementById("viewWorlds");
 
@@ -338,6 +341,8 @@ function cardDimensions(listDimensions) {
         panel.style.display = "block";
       }
     }
+
+    // Icono junto al nombre de la dimension
     const imagen= document.createElement("img");
     imagen.className="imagenDesplegable";
     imagen.src="./img/agujero-negro.svg";
@@ -350,8 +355,11 @@ function cardDimensions(listDimensions) {
   }
 }
 
+// Lista de los mundos --------------------------------------------------------------
 function cardDesplegable(listWorlds, dimensions) {
   const containerName = document.getElementsByClassName("listWorlds");
+
+  // Iteramos sobre la lista de div que tienen la clase listWorlds
   for (let index = 0; index < containerName.length; index++) {
     for (let place of listWorlds) {
       if (place.dimension == dimensions[index]) {
