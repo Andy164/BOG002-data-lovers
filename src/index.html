@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
   <title>Data Lovers</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 </head>
 
 <body>
@@ -25,6 +26,7 @@
       <button id="characters" class="charactersMenu">Characters</button>
       <button id="dimensions" class="dimensionsMenu">Dimensions</button>
       <button id="episodes" class="episodesmenu">Episodes</button>
+      <button id="episodes" class="statisticsmenu">Statistics</button>
     </div>
   </div>
 
@@ -34,6 +36,7 @@
     <button class="charactersMenu">Characters</button>
     <button class="dimensionsMenu">Dimensions</button>
     <button class="episodesmenu">Episodes</button>
+    <button class="statisticsmenu">Statistics</button>
     <button id="menuHome" href="#">Home</button>
   </div>
 
@@ -80,7 +83,6 @@
           <button class="episodesbtn">Episodes</button>
           <div class="dropdown-content">
             <!-- <a href="#">Link 1</a> -->
-            
           </div>
         </div>
       </div>
@@ -104,18 +106,6 @@
           <p>Nombre Personaje personaje</p>
         </div>
       </div>
-      <button class="desplegable">Nombre 2</button>
-      <div class="listCharacters subdesplegable">
-        Mostrar personajes
-      </div>
-      <button class="desplegable">Nombre 3</button>
-      <div class="listCharacters subdesplegable">
-        Mostrar personajes
-      </div>
-      <button class="desplegable">Nombre 4</button>
-      <div class="listCharacters subdesplegable">
-        Mostrar personajes
-      </div>
     </div> -->
   </div>
   <div id="viewEpisodes" class="d-none views">
@@ -137,15 +127,19 @@
           <div class="infoCharacters">
             <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="">
             <p>Nombre Personaje</p>
-
           </div>
-          
         </div>
-
-
-
       </div>
     </div> -->
+  </div>
+
+  <div id="viewStatistics" class="d-none">
+      <h1>Characters Status</h1>
+      <canvas id="myChartStatus"></canvas>
+      <h1>Characters Gender</h1>
+      <canvas id="myChartGender"></canvas>
+      <h1>Main Characters</h1>
+      <canvas id="myChartMainCharcaters"></canvas>
   </div>
 
   <script src="main.js" type="module"></script>

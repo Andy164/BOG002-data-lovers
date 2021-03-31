@@ -1,10 +1,9 @@
-import { filterByLetterName, getDimensions, getIdCharacters, getTemporade  } from './data.js';
+import { filterByLetterName, getDimensions, getIdCharacters, getTemporade, countStatusValues, countGenderValues, countMainCharactersValues  } from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
 
 let episodesData= [];
 // Guardar en la constante characters el arreglo de objetos que contienen la información de cada personaje
 const charactersData = data.results;
-
 
 // BOTONES MENÚ --------------------------------------------------------------------------------------------
 // Ocultar vista principal y mostrar la de personajes
@@ -31,6 +30,9 @@ for (let index = 0; index < btnsToCharacters.length; index++) {
 
     const viewEpisodes = document.getElementById("viewEpisodes");
     viewEpisodes.style.display = "none";
+
+    const viewStatistics = document.getElementById("viewStatistics");
+    viewStatistics.style.display = "none";
   });
 }
 
@@ -53,6 +55,9 @@ for (let index = 0; index < btnsToDimensions.length; index++) {
 
     const viewEpisodes = document.getElementById("viewEpisodes");
     viewEpisodes.style.display = "none";
+
+    const viewStatistics = document.getElementById("viewStatistics");
+    viewStatistics.style.display = "none";
   });
 }
 const btnsToEpisodes = document.getElementsByClassName("episodesmenu");
@@ -61,6 +66,33 @@ for (let index = 0; index < btnsToEpisodes.length; index++) {
   btnsToEpisodes[index].addEventListener("click", () => {
     const viewEpisodes = document.getElementById("viewEpisodes");
     viewEpisodes.style.display = "block";
+
+    const viewHome = document.getElementById("titulo");
+    viewHome.style.display = "none";
+
+    const menu = document.getElementById("openNav");
+    menu.style.display = "block";
+
+    const viewCharacters = document.getElementById("viewCharacters");
+    viewCharacters.style.display = "none";
+
+    const worlds = document.getElementById("viewWorlds");
+    worlds.style.display = "none";
+
+    const viewStatistics = document.getElementById("viewStatistics");
+    viewStatistics.style.display = "none";
+  });
+}
+
+const btnsToStatistics = document.getElementsByClassName("statisticsmenu");
+// Iteramos sobre los botones de characters del menú principal y menú hamburguesa
+for (let index = 0; index < btnsToEpisodes.length; index++) {
+  btnsToStatistics[index].addEventListener("click", () => {
+    const statistics = document.getElementById("viewStatistics");
+    statistics.style.display = "flex";
+
+    const viewEpisodes = document.getElementById("viewEpisodes");
+    viewEpisodes.style.display = "none";
 
     const viewHome = document.getElementById("titulo");
     viewHome.style.display = "none";
@@ -89,6 +121,9 @@ function showHome() {
 
   const viewEpisodes=  document.getElementById("viewEpisodes");
   viewEpisodes.style.display = "none";
+
+  const viewStatistics = document.getElementById("viewStatistics");
+  viewStatistics.style.display = "none";
 
   const menu=document.getElementById("openNav");
   menu.style.display = "none";
@@ -208,7 +243,7 @@ function removeCharacters(charactersData) {
 }
 
 
-// VENTANA EMERGENTE ---------------------------------------------------------------------------------------------
+// VENTANA EMERGENTE Mostrar información personajes -----------------------------------------------------
 const modal = document.getElementById("myModal");
 const span = document.getElementsByClassName("close")[0];
 // Agregamos evento click al botón X que cierra la ventana emergente
@@ -222,22 +257,18 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 }
+
+// Episodios en la ventana emergente
 function listEpisodes(listEpisodes){
- 
   const container= document.getElementsByClassName("dropdown-content")[0];
+  // Vaciar el contenedor de la lista de episodios
   container.innerHTML=""
 
   for (let episode of listEpisodes ){
     const episodio = document.createElement("a")
-   episodio.textContent= episodesData[episode.slice(40)-1].name;
-  container.appendChild(episodio);
-   console.log(episode.slice(40));
- 
-
-}
-    
-
-  
+    episodio.textContent= episodesData[episode.slice(40)-1].name;
+    container.appendChild(episodio);
+  }  
 }
 
 // MENÚ HAMBURGUESA -----------------------------------------------------------------------------------------------
@@ -265,9 +296,8 @@ fetch("https://rickandmortyapi.com/api/location")
   .then(data => {
     const listDimensions = getDimensions(data.results);
     // eslint-disable-next-line no-undef
-    const dimensionsSet =new Set(listDimensions);
+    const dimensionsSet = new Set(listDimensions);
     const dimensions = [...dimensionsSet];
-    console.log(dimensions);
 
     // Crear lista de  dimensiones
     cardDimensions(dimensions);
@@ -276,7 +306,7 @@ fetch("https://rickandmortyapi.com/api/location")
     cardDesplegable(data.results, dimensions);
   });
 
-
+// FILTRO DE BÚSQUEDA POR NOMBRE DE DIMENSIÓN --------------------------------------------------
 const inputSearch = document.getElementById("searchName");
 inputSearch.onkeyup = function() {
   searchNameDimension();
@@ -294,6 +324,7 @@ function searchNameDimension() {
   }
 }
 
+// LISTA DE DIMENSIONES -----------------------------------------------------------------
 function cardDimensions(listDimensions) {
   const containerWorlds = document.getElementById("viewWorlds");
 
@@ -310,6 +341,8 @@ function cardDimensions(listDimensions) {
         panel.style.display = "block";
       }
     }
+
+    // Icono junto al nombre de la dimension
     const imagen= document.createElement("img");
     imagen.className="imagenDesplegable";
     imagen.src="./img/agujero-negro.svg";
@@ -322,10 +355,11 @@ function cardDimensions(listDimensions) {
   }
 }
 
+// Lista de los mundos --------------------------------------------------------------
 function cardDesplegable(listWorlds, dimensions) {
   const containerName = document.getElementsByClassName("listWorlds");
-  // const desplegable = document.getElementsByClassName("desplegable");
-  // console.log(listWorlds);
+
+  // Iteramos sobre la lista de div que tienen la clase listWorlds
   for (let index = 0; index < containerName.length; index++) {
     for (let place of listWorlds) {
       if (place.dimension == dimensions[index]) {
@@ -343,8 +377,7 @@ function cardDesplegable(listWorlds, dimensions) {
         }
 
         let idCharacters = getIdCharacters(place.residents);
-        // console.log(idCharacters);
-        
+
         const contCharacters = document.createElement("div");
         contCharacters.className = "listCharacters subdesplegable";
         const titulo= document.createElement("h2");
@@ -403,6 +436,7 @@ fetch("https://rickandmortyapi.com/api/episode")
     episodesData=data.results;
     const listTemporades= getTemporade(data.results);
     const sliceTemporade = listTemporades.map(t => t.slice(0,-3));
+    // eslint-disable-next-line no-undef
     const temporadesSet = new Set(sliceTemporade);
     const temporada = [...temporadesSet];
 
@@ -510,35 +544,144 @@ function cardEpiodes(listTemporades, episodes) {
          }
         }
 
-       
-        
         info.appendChild(infoEpisodes);
         info.appendChild(containerCharacters);
         infoEpisodes.appendChild(h2);
         p.appendChild(span1);
         p.appendChild(span2);
         p.appendChild(span3);
-        infoEpisodes.appendChild(p);
-        
-
-       
-        
-       }
+        infoEpisodes.appendChild(p); 
+      }
     }
   }
 }
-// const desplegable = document.getElementsByClassName("desplegableTemporades");
 
-// // Iteramos sobre todos los elementos que tienen la clase "desplegable"
-// for (let i = 0; i < desplegable.length; i++) {
-//   // A cada elemento desplegable le agregamos el evento click para mostrar el panel de opciones
-//   desplegable[i].addEventListener("click", () => {
-//     let panel = desplegable[i].nextElementSibling;
-//   console.log(panel);
-//     if(panel.style.display === "block") {
-//       panel.style.display = "none";
-//     } else {
-//       panel.style.display = "block";
-//     }
-//   });
-// }
+
+// VIEW STATISTICS ------------------------------------------------------------------------------------
+const resultsStatisticsStatus = countStatusValues(charactersData);
+
+const ctx = document.getElementById('myChartStatus').getContext('2d');
+let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Alive', 'Dead', 'Unknown',],
+        datasets: [{
+            label: 'Estado',
+            data: resultsStatisticsStatus,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',
+                'rgba(54, 162, 235, 0.4)',
+                'rgba(255, 206, 86, 0.4)',
+                'rgba(75, 192, 192, 0.4)',
+                'rgba(153, 102, 255, 0.4)',
+                'rgba(255, 159, 64, 0.4)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    fontColor: 'white',
+                }
+            }],
+            xAxes: [{
+              ticks: {
+                fontColor: 'white',
+              }
+            }],
+        },
+        legend: {
+          labels: {
+            fontColor: 'white',
+          }
+        }
+    }
+});
+
+const resultsStatisticsGender = countGenderValues(charactersData);
+
+const ctxGender = document.getElementById('myChartGender').getContext('2d');
+let myChartGender = new Chart(ctxGender, {
+    type: 'doughnut',
+    data: {
+        labels: ['Female', 'Male', 'Genderless', 'unknown'],
+        datasets: [{
+            label: 'Gender',
+            data: resultsStatisticsGender,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',
+                'rgba(54, 162, 235, 0.4)',
+                'rgba(255, 206, 86, 0.4)',
+                'rgba(75, 192, 192, 0.4)',
+                'rgba(153, 102, 255, 0.4)',
+                'rgba(255, 159, 64, 0.4)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        legend: {
+          labels: {
+            fontColor: 'white',
+          }
+        }
+    }
+});
+
+
+const resultsStatisticsMainCharacters = countMainCharactersValues(charactersData);
+
+const ctxMainCharacters = document.getElementById('myChartMainCharcaters').getContext('2d');
+let myChartMainCharcaters = new Chart(ctxMainCharacters, {
+    type: 'polarArea',
+    data: {
+        labels: ['Rick', 'Morty', 'Summer', 'Beth', 'Jerry'],
+        datasets: [{
+            label: 'Main Characters',
+            data: resultsStatisticsMainCharacters,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.4)',
+                'rgba(54, 162, 235, 0.4)',
+                'rgba(255, 206, 86, 0.4)',
+                'rgba(75, 192, 192, 0.4)',
+                'rgba(153, 102, 255, 0.4)',
+                'rgba(255, 159, 64, 0.4)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        legend: {
+          labels: {
+            fontColor: 'white',
+          }
+        }
+    }
+});

@@ -425,25 +425,39 @@ button.desplegableTemporades {
   }
 
 
-  input {
-    width: 100%;
-    background-color: black;
-    color: #0df205;
-    padding: 10px 20px;
-    font-size: large;
-    border: none;
-    margin-bottom: 20px;
-  }
-  
-  input:focus {
-    outline: none;
-  }
+input {
+  width: 100%;
+  background-color: black;
+  color: #0df205;
+  padding: 10px 20px;
+  font-size: large;
+  border: none;
+  margin-bottom: 20px;
+}
 
+input:focus {
+  outline: none;
+}
 
+#myChartStatus, #myChartGender, #myChartMainCharcaters {
+  background-color: black;
+  margin-bottom: 30px;
+  padding: 50px;
+}
 
+#viewStatistics {
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 60vw;
+}
 
-
-
+#viewStatistics h1 {
+  color: white;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 50px;
+}
 
 @media screen and (max-width: 700px) {
     
@@ -458,6 +472,9 @@ button.desplegableTemporades {
         width: 400px;
         left: -300%;
     }
+    /*#myChartStatus, #myChartGender, #myChartMainCharcaters {
+      height: 400px !important;
+    }*/
 }
 
 
@@ -494,6 +511,10 @@ button.desplegableTemporades {
     #titulo{
         height: 100%;
     }
+
+    /*#myChartStatus, #myChartGender, #myChartMainCharcaters {
+      height: 300px !important;
+    }*/
 }
 
 @media screen and (min-width: 700px) {
