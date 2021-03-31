@@ -264,7 +264,8 @@ fetch("https://rickandmortyapi.com/api/location")
   .then(response => response.json())
   .then(data => {
     const listDimensions = getDimensions(data.results);
-    const dimensionsSet = new Set(listDimensions);
+    // eslint-disable-next-line no-undef
+    const dimensionsSet =new Set(listDimensions);
     const dimensions = [...dimensionsSet];
     console.log(dimensions);
 
